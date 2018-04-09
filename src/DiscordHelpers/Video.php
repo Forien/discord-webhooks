@@ -12,7 +12,7 @@ namespace Forien\DiscordHelpers;
  *
  * @package Forien\DiscordHelpers
  */
-class Video
+class Video extends WebhookObject
 {
     protected $url;
     protected $height;

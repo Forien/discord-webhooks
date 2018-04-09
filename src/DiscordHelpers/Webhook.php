@@ -7,12 +7,13 @@
  */
 
 namespace Forien\DiscordHelpers;
+
 /**
  * Class Webhook
  *
  * @package Forien\DiscordHelpers
  */
-class Webhook
+class Webhook extends WebhookObject
 {
     /**
      * @var string
@@ -41,34 +42,50 @@ class Webhook
 
     /**
      * @param string $content
+     *
+     * @return Webhook
      */
-    public function setContent(string $content)
+    public function setContent(string $content): Webhook
     {
         $this->content = $content;
+
+        return $this;
     }
 
     /**
      * @param string $username
+     *
+     * @return Webhook
      */
-    public function setUsername(string $username)
+    public function setUsername(string $username): Webhook
     {
         $this->username = $username;
+
+        return $this;
     }
 
     /**
      * @param string $avatar_url
+     *
+     * @return Webhook
      */
-    public function setAvatarUrl(string $avatar_url)
+    public function setAvatarUrl(string $avatar_url): Webhook
     {
         $this->avatar_url = $avatar_url;
+
+        return $this;
     }
 
     /**
      * @param bool $tts
+     *
+     * @return Webhook
      */
-    public function setTts(bool $tts)
+    public function setTts(bool $tts): Webhook
     {
         $this->tts = (bool)$tts;
+
+        return $this;
     }
 
     /**

@@ -12,14 +12,14 @@ namespace Forien\DiscordHelpers;
  *
  * @package Forien\DiscordHelpers
  */
-abstract class EmbedPart
+abstract class EmbedPart extends WebhookObject
 {
     /**
      * EmbedPart constructor.
      *
      * @param null|array $params
      */
-    public function __construct($params = null)
+    public function __construct(array $params = null)
     {
         if ($params) {
             foreach ($params as $var => $val) {

@@ -25,17 +25,25 @@ class Author extends EmbedPart
 
     /**
      * @param string $name
+     *
+     * @return Author
      */
-    public function setName(string $name)
+    public function setName(string $name): Author
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
      * @param string $icon_url
+     *
+     * @return Author
      */
-    public function setIconUrl(string $icon_url)
+    public function setIconUrl(string $icon_url): Author
     {
         $this->icon_url = $icon_url;
+
+        return $this;
     }
 }

@@ -21,9 +21,13 @@ class Thumbnail extends EmbedPart
 
     /**
      * @param string $url
+     *
+     * @return Thumbnail
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): Thumbnail
     {
         $this->url = $url;
+
+        return $this;
     }
 }

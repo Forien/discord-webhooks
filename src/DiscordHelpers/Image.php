@@ -22,9 +22,13 @@ class Image extends EmbedPart
 
     /**
      * @param string $url
+     *
+     * @return Image
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): Image
     {
         $this->url = $url;
+
+        return $this;
     }
 }

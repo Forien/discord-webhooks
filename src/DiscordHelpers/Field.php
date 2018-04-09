@@ -29,25 +29,37 @@ class Field extends EmbedPart
 
     /**
      * @param string $name
+     *
+     * @return Field
      */
-    public function setName(string $name)
+    public function setName(string $name): Field
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     *
+     * @return Field
      */
-    public function setValue(string $value)
+    public function setValue(string $value): Field
     {
         $this->value = $value;
+
+        return $this;
     }
 
     /**
      * @param bool $inline
+     *
+     * @return Field
      */
-    public function setInline(bool $inline)
+    public function setInline(bool $inline): Field
     {
         $this->inline = $inline;
+
+        return $this;
     }
 }

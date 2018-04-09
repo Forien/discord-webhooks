@@ -26,17 +26,25 @@ class Footer extends EmbedPart
 
     /**
      * @param string $text
+     *
+     * @return Footer
      */
-    public function setText(string $text)
+    public function setText(string $text): Footer
     {
         $this->text = $text;
+
+        return $this;
     }
 
     /**
      * @param string $icon_url
+     *
+     * @return Footer
      */
-    public function setIconUrl(string $icon_url)
+    public function setIconUrl(string $icon_url): Footer
     {
         $this->icon_url = $icon_url;
+
+        return $this;
     }
 }
