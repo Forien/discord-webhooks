@@ -36,7 +36,9 @@ trait WebhookObjectBuildable
         $fields = [];
         foreach ($this as $key => $value) {
             if ($value instanceof WebhookObject) {
-                $fields[$key] = json_encode($value);
+                $fields[$key] = $value->jsonSerialize();
+            } else if ($value === null || $value === '' || $value === []) {
+                continue;
             } else {
                 $fields[$key] = $value;
             }

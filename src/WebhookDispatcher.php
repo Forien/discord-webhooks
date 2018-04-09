@@ -119,6 +119,10 @@ final class WebhookDispatcher implements WebhookDispatcherInterface
                 return $jsonEncodedWebhook;
             }
 
+            if ($this->wait) {
+                $hook .= '?wait=true';
+            }
+
             $curl = curl_init($hook);
             curl_setopt($curl, CURLOPT_HEADER, false);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

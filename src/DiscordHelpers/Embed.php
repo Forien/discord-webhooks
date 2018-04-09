@@ -68,49 +68,49 @@ class Embed extends EmbedPart
     /**
      * @param array $params
      *
-     * @return $this
+     * @return Image
      */
-    public function addImage(array $params = []): Embed
+    public function addImage(array $params = []): Image
     {
         $this->image = new Image($params);
 
-        return $this;
+        return $this->image;
     }
 
     /**
      * @param array $params
      *
-     * @return $this
+     * @return Author
      */
-    public function addAuthor(array $params = []): Embed
+    public function addAuthor(array $params = []): Author
     {
         $this->author = new Author($params);
 
-        return $this;
+        return $this->author;
     }
 
     /**
      * @param array $params
      *
-     * @return $this
+     * @return Footer
      */
-    public function addFooter(array $params = []): Embed
+    public function addFooter(array $params = []): Footer
     {
         $this->footer = new Footer($params);
 
-        return $this;
+        return $this->footer;
     }
 
     /**
      * @param array $params
      *
-     * @return $this
+     * @return Thumbnail
      */
-    public function addThumbnail(array $params = []): Embed
+    public function addThumbnail(array $params = []): Thumbnail
     {
         $this->thumbnail = new Thumbnail($params);
 
-        return $this;
+        return $this->thumbnail;
     }
 
     /**
@@ -180,9 +180,13 @@ class Embed extends EmbedPart
      *
      * @return Embed
      */
-    public function setTimestamp(string $timestamp): Embed
+    public function setTimestamp($timestamp = 'now'): Embed
     {
-        $this->timestamp = $timestamp;
+        if (!$timestamp instanceof \DateTime) {
+            $timestamp = new \DateTime($timestamp);
+        }
+
+        $this->timestamp = $timestamp->format(\DateTime::ISO8601);
 
         return $this;
     }
