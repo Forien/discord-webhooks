@@ -38,11 +38,12 @@ interface WebhookDispatcherInterface
      * Every Webhook is sent over the same Hooks (Discord Webhook URLs).
      *
      * @param Webhook|null $webhook
+     * @param string|null  $hook
      *
      * @return string
      * @throws DiscordWebhookException
      */
-    public function send(Webhook $webhook = null): string;
+    public function send(Webhook $webhook = null, string $hook = null): string;
 
     /**
      * @return Webhook

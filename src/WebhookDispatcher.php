@@ -84,14 +84,15 @@ final class WebhookDispatcher implements WebhookDispatcherInterface
 
     /**
      * @param Webhook|null $webhook
+     * @param string|null  $hook
      *
      * @return string
      * @throws DiscordWebhookException
      */
-    public function send(Webhook $webhook = null): string
+    public function send(Webhook $webhook = null, string $hook = null): string
     {
         if (!empty($webhook)) {
-            return $this->sendWebhook($webhook->build());
+            return $this->sendWebhook($webhook->build(), $hook);
         }
 
         $webhooks = [];
@@ -99,18 +100,25 @@ final class WebhookDispatcher implements WebhookDispatcherInterface
             $webhooks[] = $webhook->build();
         }
 
-        return $this->sendWebhookBulk($webhooks);
+        return $this->sendWebhookBulk($webhooks, $hook);
     }
 
     /**
-     * @param string $jsonEncodedWebhook
+     * @param string      $jsonEncodedWebhook
+     * @param string|null $hook
      *
      * @return string
      * @throws DiscordWebhookException
      */
-    private function sendWebhook(string $jsonEncodedWebhook): string
+    private function sendWebhook(string $jsonEncodedWebhook, string $hook = null): string
     {
-        foreach ($this->hooks as $hook) {
+        if (!empty($hook)) {
+            $hooks = [$hook];
+        } else {
+            $hooks = $this->hooks;
+        }
+
+        foreach ($hooks as $hook) {
             if (empty($jsonEncodedWebhook)) {
                 throw new DiscordWebhookException("WebhookDispatcher attempted to publish empty post to hook {$hook}");
             }
@@ -139,17 +147,18 @@ final class WebhookDispatcher implements WebhookDispatcherInterface
     }
 
     /**
-     * @param array $jsonEncodedWebhooks
+     * @param array       $jsonEncodedWebhooks
+     * @param string|null $hook
      *
      * @return string
      * @throws DiscordWebhookException
      */
-    private function sendWebhookBulk(array $jsonEncodedWebhooks): string
+    private function sendWebhookBulk(array $jsonEncodedWebhooks, string $hook = null): string
     {
         $result = '';
 
         foreach ($jsonEncodedWebhooks as $encodedWebhook) {
-            $result .= $this->sendWebhook($encodedWebhook);
+            $result .= $this->sendWebhook($encodedWebhook, $hook);
         }
 
         return $result;
